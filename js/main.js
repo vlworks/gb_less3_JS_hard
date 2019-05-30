@@ -3,12 +3,18 @@ const products = [
     {id: 2, title: 'Mouse', price: 30},
     {id: 3, title: 'Keyboard', price: 55},
     {id: 4, title: 'Gamepad', price: 75},
+    {id: 4, title: 'Gamepad', price: 75},
+    {id: 4, title: 'Gamepad', price: 75},
+    {id: 4, title: 'Gamepad', price: 75},
+    {id: 4, title: 'Gamepad', price: 75},
+    {id: 4, title: 'Gamepad', price: 75},
+    {id: 4, title: 'Gamepad', price: 75},
 ];
 
 const renderProduct = (title, price) => {
     return `<div class="product-item">
                 <h3>${title}</h3>
-                <p>${price}</p>
+                <p>${price} $</p>
                 <button class="buy-btn">Купить</button>
             </div>`
 };
@@ -16,9 +22,8 @@ const renderProduct = (title, price) => {
 const renderPage = list => {
     const productsList = list.map(item => renderProduct(item.title, item.price));
     // document.querySelector('.products').innerHTML = productsList;
-    for(let prop in productsList){
-        console.log(productsList[prop]);
-        document.querySelector('.products').innerHTML += productsList[prop];
+    for(let prop of productsList){
+        document.querySelector('.products').innerHTML += prop;
     }
 };
 
