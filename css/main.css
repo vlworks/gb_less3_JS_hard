@@ -7,6 +7,14 @@
 
 body {
     font-family: 'Roboto', sans-serif;
+    min-height: 100%;
+}
+
+.container {
+    width: 850px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    margin: 0 auto;
+    min-height: 100vh;
 }
 
 h1 {
