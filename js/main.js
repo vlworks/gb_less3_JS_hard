@@ -33,6 +33,9 @@ class ProductsList {
             block.insertAdjacentHTML('beforeend', product.render());
         }
     }
+    sum(){
+
+    }
 }
 
 class ProductItem {
