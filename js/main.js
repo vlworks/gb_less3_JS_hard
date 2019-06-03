@@ -8,6 +8,7 @@ class ProductsList {
     init(){
         this._fetchProducts();
         this._render();
+        this.sum();
     }
     _fetchProducts(){
         this.data = [
@@ -19,10 +20,6 @@ class ProductsList {
             {id: 6, title: 'Mouse', price: 30},
             {id: 7, title: 'Keyboard', price: 55},
             {id: 8, title: 'Gamepad', price: 65},
-            {id: 9, title: 'Notebook', price: 2000},
-            {id: 10, title: 'Mouse', price: 30},
-            {id: 11, title: 'Keyboard', price: 55},
-            {id: 12, title: 'Gamepad', price: 65},
         ];
     }
     _render(){
@@ -34,7 +31,13 @@ class ProductsList {
         }
     }
     sum(){
-
+        let sum = 0;
+        for(let element of this.data){
+            sum += element.price;
+        }
+        console.log(sum);
+        let $sumProduct = document.querySelector('.sum');
+        $sumProduct.innerHTML = `Сумма всех товаров каталога равна: ${sum}`;
     }
 }
 
