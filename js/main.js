@@ -8,7 +8,7 @@ class ProductsList {
     init(){
         this._fetchProducts();
         this._render();
-        this.sum();
+        this.sum(); // для подсчета суммы
     }
     _fetchProducts(){
         this.data = [
