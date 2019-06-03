@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="burger.css">
+    <title>Закажи бургер</title>
+</head>
+<body>
+    <div class="container">
+        <div class="create">
+            <form action="#">
+                <fieldset>
+                    <legend>Собери свой бургер:</legend>
+                    <p>Размер:</p>
+                    <input type="radio" id="big" name="size" value="big"><label for="big">Большой</label><br>
+                    <input type="radio" id="small" name="size" value="small"><label for="small">Маленький</label>
+                    <p>Начинка:</p>
+                    <input type="radio" id="chees" name="stuff" value="chees"><label for="chees">Сыр</label><br>
+                    <input type="radio" id="salad" name="stuff" value="salad"><label for="salad">Салат</label><br>
+                    <input type="radio" id="potatoes" name="stuff" value="potatoes"><label for="potatoes">Картофель</label>
+                    <p>Добавка:</p>
+                    <input type="checkbox" id="seasoning" name="additive" value="seasoning"><label for="seasoning">Приправа</label><br>
+                    <input type="checkbox" id="mayonnaise" name="additive" value="mayonnaise"><label for="mayonnaise">Майонез</label>
+                    <p></p>
+                    <input type="button" value="Собрать">
+                </fieldset>
+            </form>
+        </div>
+        <div class="result">
+            <h2>Результат:</h2>
+            <p id="component">More component</p>
+            <p id="ccal">Ccal</p>
+            <p id="price">Price</p>
+        </div>
+    </div>
+    <script src="burger.js"></script>
+</body>
+</html>
