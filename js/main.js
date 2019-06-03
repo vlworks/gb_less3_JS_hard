@@ -3,6 +3,7 @@ class ProductsList {
         this.container = container;
         this.data = [];
         this.allProducts = [];
+        this.summary = 0; // хранится сумма товаров
         this.init();
     }
     init(){
@@ -31,13 +32,19 @@ class ProductsList {
         }
     }
     sum(){
-        let sum = 0;
-        for(let element of this.data){
-            sum += element.price;
-        }
-        console.log(sum);
-        let $sumProduct = document.querySelector('.sum');
-        $sumProduct.innerHTML = `Сумма всех товаров каталога равна: ${sum}`;
+
+        // варинат for of
+
+        // for(let element of this.data){
+        //     this.summary += element.price;
+        // }
+        // document.querySelector('.sum').innerHTML = `Сумма всех товаров каталога равна: ${this.summary}`;
+
+        // варинат forEach - на learnJS про данный метод сказано "более элегантный" чем for of
+        // мне больше нравится именно этот вариант
+
+        this.data.forEach(item => this.summary += item.price);
+        document.querySelector('.sum').innerHTML = `Сумма всех товаров каталога равна: ${this.summary}`;
     }
 }
 
@@ -59,12 +66,21 @@ class ProductItem {
              </div>`
     }
 }
+
+// домашнее задание с корзиной
 class Cart {
-    constructor(){
-        // this.some это свойство с чем-то
-        // some(){} // что делает метод
+    constructor(container){
+        this.container = container; // DOM элемент
+        this.basket = []; // массив с товарами в корзине
     }
+    renderItem(){}; // рендер элемента корзины
+    renderCart(){}; // рендер всей корзины
+    pushCart(){}; // добавление нового товара в корзину
+    deleteCart(){}; // удаление элемента из корзины
+    correctQuantityCart(){}; // слушаем изменения кол-ва у элемента корзины
 }
+
+
 
 const products = new ProductsList();
 
