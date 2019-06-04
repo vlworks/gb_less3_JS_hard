@@ -11,29 +11,27 @@
 <body>
     <div class="container">
         <div class="create">
-            <form action="#">
+            <form action="#" id="form">
                 <fieldset>
                     <legend>Собери свой бургер:</legend>
                     <p>Размер:</p>
-                    <input type="radio" id="big" name="size" value="big"><label for="big">Большой</label><br>
-                    <input type="radio" id="small" name="size" value="small"><label for="small">Маленький</label>
+                    <input type="radio" id="big" name="size" value="big">Большой (100$, 40Ccal)<br>
+                    <input type="radio" id="small" name="size" value="small">Маленький (50$, 20Ccal)
                     <p>Начинка:</p>
-                    <input type="radio" id="chees" name="stuff" value="chees"><label for="chees">Сыр</label><br>
-                    <input type="radio" id="salad" name="stuff" value="salad"><label for="salad">Салат</label><br>
-                    <input type="radio" id="potatoes" name="stuff" value="potatoes"><label for="potatoes">Картофель</label>
+                    <input type="radio" id="chees" name="stuff" value="chees" disabled>Сыр (10$, 20Ccal)<br>
+                    <input type="radio" id="salad" name="stuff" value="salad" disabled>Салат (20$, 5Ccal)<br>
+                    <input type="radio" id="potatoes" name="stuff" value="potatoes" disabled>Картофель (15$, 10Ccal)
                     <p>Добавка:</p>
-                    <input type="checkbox" id="seasoning" name="additive" value="seasoning"><label for="seasoning">Приправа</label><br>
-                    <input type="checkbox" id="mayonnaise" name="additive" value="mayonnaise"><label for="mayonnaise">Майонез</label>
-                    <p></p>
-                    <input type="button" value="Собрать">
+                    <input type="checkbox" id="seasoning" name="additive" value="seasoning" disabled>Приправа (15$, 0Ccal)<br>
+                    <input type="checkbox" id="mayonnaise" name="additive" value="mayonnaise" disabled>Майонез (20$, 5Ccal)<br><br>
+                    <input type="button" id="complite" value="Заказать">&nbsp;<input type="reset" id="reset" value="Сбросить" disabled>
                 </fieldset>
             </form>
         </div>
-        <div class="result">
+        <div class="info">
             <h2>Результат:</h2>
-            <p id="component">More component</p>
-            <p id="ccal">Ccal</p>
-            <p id="price">Price</p>
+            <p id="message">Выберите размер</p>
+            <p id="result">&nbsp;</p>
         </div>
     </div>
     <script src="burger.js"></script>
