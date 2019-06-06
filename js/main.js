@@ -1,19 +1,5 @@
 const API = `https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses`;
 
-// let getRequest = (url, cb) => {
-//     let xhr = new XMLHttpRequest();
-//     // window.ActiveXObject -> xhr = new ActiveXObject();
-//     xhr.open('GET', url, true);
-//     xhr.onreadystatechange = () => {
-//         if(xhr.readyState === 4){
-//             if(xhr.status !== 200){
-//                 console.log('error');
-//             } else {
-//                 cb(xhr.responseText);
-//             }
-//         }
-//     }
-// };
 
 class ProductsList {
     constructor(container = '.products'){
@@ -31,14 +17,7 @@ class ProductsList {
             })
             .catch(error => console.log('error'));
     }
-    // _fetchProducts(){
-    //     this.data = [
-    //         {id: 1, title: 'Notebook', price: 2000},
-    //         {id: 2, title: 'Mouse', price: 30},
-    //         {id: 3, title: 'Keyboard', price: 55},
-    //         {id: 4, title: 'Gamepad', price: 65},
-    //     ];
-    // }
+
     calcSum(){
         return this.allProducts.reduce((accum, item) => accum + item.price, 0)
     }
@@ -78,31 +57,3 @@ class Cart {
 }
 
 const products = new ProductsList();
-// console.log(products.calcSum());
-
-// const products = [
-//     {id: 1, title: 'Notebook', price: 2000},
-//     {id: 2, title: 'Mouse', price: 30},
-//     {id: 3, title: 'Keyboard', price: 55},
-//     {id: 4, title: 'Gamepad', price: 65},
-// ];
-//
-// const renderProduct = (title, price, img = `https://placehold.it/200x150`) => {
-//     return `<div class="product-item">
-//                  <img src="${img}" alt="${title}">
-//                  <div class="desc">
-//                      <h3>${title}</h3>
-//                      <p>${price}</p>
-//                      <button class="buy-btn">Купить</button>
-//                  </div>
-//              </div>`
-// };
-//
-// const renderPage = list => {
-//     // document.querySelector('.products').innerHTML = list.map(item => renderProduct(item.title, item.price)).join('');
-//     for (let product of list){
-//         document.querySelector('.products').insertAdjacentHTML('beforeend', renderProduct(product.title, product.price));
-//     }
-// };
-//
-// renderPage(products);
