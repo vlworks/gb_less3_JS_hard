@@ -1,27 +1,46 @@
+const API = `https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses`;
+
+// let getRequest = (url, cb) => {
+//     let xhr = new XMLHttpRequest();
+//     // window.ActiveXObject -> xhr = new ActiveXObject();
+//     xhr.open('GET', url, true);
+//     xhr.onreadystatechange = () => {
+//         if(xhr.readyState === 4){
+//             if(xhr.status !== 200){
+//                 console.log('error');
+//             } else {
+//                 cb(xhr.responseText);
+//             }
+//         }
+//     }
+// };
+
 class ProductsList {
     constructor(container = '.products'){
         this.container = container;
         this.data = [];
         this.allProducts = [];
-        this.summary = 0; // хранится сумма товаров
-        this.init();
+        this._getProducts()
+            .then(() => this._render());
     }
-    init(){
-        this._fetchProducts();
-        this._render();
-        this.sum(); // для подсчета суммы
+    _getProducts(){
+        return fetch(`${API}/catalogData.json`)
+            .then(result => result.json())
+            .then(data => {
+                this.data = [...data];
+            })
+            .catch(error => console.log('error'));
     }
-    _fetchProducts(){
-        this.data = [
-            {id: 1, title: 'Notebook', price: 2000},
-            {id: 2, title: 'Mouse', price: 30},
-            {id: 3, title: 'Keyboard', price: 55},
-            {id: 4, title: 'Gamepad', price: 65},
-            {id: 5, title: 'Notebook', price: 2000},
-            {id: 6, title: 'Mouse', price: 30},
-            {id: 7, title: 'Keyboard', price: 55},
-            {id: 8, title: 'Gamepad', price: 65},
-        ];
+    // _fetchProducts(){
+    //     this.data = [
+    //         {id: 1, title: 'Notebook', price: 2000},
+    //         {id: 2, title: 'Mouse', price: 30},
+    //         {id: 3, title: 'Keyboard', price: 55},
+    //         {id: 4, title: 'Gamepad', price: 65},
+    //     ];
+    // }
+    calcSum(){
+        return this.allProducts.reduce((accum, item) => accum + item.price, 0)
     }
     _render(){
         const block = document.querySelector(this.container);
@@ -31,58 +50,35 @@ class ProductsList {
             block.insertAdjacentHTML('beforeend', product.render());
         }
     }
-    sum(){
-
-        // варинат for of
-
-        // for(let element of this.data){
-        //     this.summary += element.price;
-        // }
-        // document.querySelector('.sum').innerHTML = `Сумма всех товаров каталога равна: ${this.summary}`;
-
-        // варинат forEach - на learnJS про данный метод сказано "более элегантный" чем for of
-        // мне больше нравится именно этот вариант
-
-        this.data.forEach(item => this.summary += item.price);
-        document.querySelector('.sum').innerHTML = `Сумма всех товаров каталога равна: ${this.summary}`;
-    }
 }
 
 class ProductItem {
-    constructor(product, img = `https://placehold.it/150x100`){
-        this.id = product.id;
-        this.title = product.title;
+    constructor(product, img = `https://placehold.it/200x150`){
+        this.id_product = product.id_product;
+        this.product_name = product.product_name;
         this.price = product.price;
         this.img = img;
     }
     render(){
         return `<div class="product-item">
-                 <img src="${this.img}" alt="${this.title}">
+                 <img src="${this.img}" alt="${this.product_name}">
                  <div class="desc">
-                     <h3>${this.title}</h3>
+                     <h3>${this.product_name}</h3>
                      <p>${this.price}</p>
                      <button class="buy-btn">Купить</button>
                  </div>
              </div>`
     }
 }
-
-// домашнее задание с корзиной
 class Cart {
-    constructor(container){
-        this.container = container; // DOM элемент
-        this.basket = []; // массив с товарами в корзине
+    constructor(){
+        // this.some это свойство с чем-то
+        // some(){} // что делает метод
     }
-    renderItem(){}; // рендер элемента корзины
-    renderCart(){}; // рендер всей корзины
-    pushCart(){}; // добавление нового товара в корзину
-    deleteCart(){}; // удаление элемента из корзины
-    correctQuantityCart(){}; // слушаем изменения кол-ва у элемента корзины
 }
 
-
-
 const products = new ProductsList();
+// console.log(products.calcSum());
 
 // const products = [
 //     {id: 1, title: 'Notebook', price: 2000},
