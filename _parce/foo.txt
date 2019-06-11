@@ -1,4 +1,5 @@
-One: 'Hi Mary.' Two: 'Oh, hi.'
+One: 'Hi Mary.'
+Two: 'Oh, hi.'
 One: 'How are you doing?'
 Two: 'I'm doing alright. How about you?'
 One: 'Not too bad. The weather is great isn't it?'
