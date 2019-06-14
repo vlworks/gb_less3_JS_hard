@@ -9,6 +9,7 @@ const app = new Vue({
         carts: [],
         imgCarts: `https://placehold.it/150x100`,
         cartNull: false,
+        isCartVisible: false,
     },
     methods: {
         getJson(url){
