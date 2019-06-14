@@ -10,6 +10,10 @@ const app = new Vue({
         imgCarts: `https://placehold.it/150x100`,
         cartNull: false,
         isCartVisible: false,
+        inputSearch: '',
+        filtered: [],
+        copyProducts: [],
+
     },
     methods: {
         getJson(url){
@@ -47,6 +51,18 @@ const app = new Vue({
                 this.carts.splice(find, 1);
                 this.watchCartNull();
             }
+        },
+        filter(event){
+            event.preventDefault();
+            const regexp = new RegExp(this.inputSearch, 'i');
+            if(this.inputSearch){
+                this.copyProducts = this.products.slice();
+                this.filtered = this.products.filter(el => regexp.test(el.product_name));
+                this.products = this.filtered;
+            } else {
+                this.products = this.copyProducts;
+            }
+
         }
 
     },
@@ -66,8 +82,8 @@ const app = new Vue({
     },
     computed: {
 
-    }
-})
+    },
+});
 
 // let getRequest = (url) => {
 //     return new Promise((resolve, reject) => {

@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .block {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+        .invisible {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <div class="block" :style="style"></div>
+
+    <input type="text" v-model="width">
+
+    <div class="block" :style="myStyles"></div>
+    <input type="text" v-model="width">
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+
+    // let some = ['new', 'old', 'man'];
+    // let regexp = new RegExp('n', 'i');
+    //
+    // console.log(regexp.test(some));
+
+    new Vue({
+        el: '#app',
+        data: {
+           width: 100,
+        },
+        computed: {
+            style(){
+                return {
+                    width: `${this.width}px`,
+                    height: `${this.width}px`,
+                }
+            }
+        },
+
+    })
+
+</script>
+</body>
+</html>
