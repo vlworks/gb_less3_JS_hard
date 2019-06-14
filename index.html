@@ -18,7 +18,16 @@
             </button>
         </form>
         <button class="btn-cart" type="button">Корзина</button>
-        <div class="cart-block invisible"></div>
+        <div class="cart-block _invisible">
+            <div class="cart-item" v-for="product of carts" :key="product.id_product">
+                <img :src="imgCarts" :alt="product.product_name">
+                <div class="cart-desc">
+                    <h3>{{product.product_name}}</h3>
+                    <span>Цена: {{product.price}}</span><br><span>Количество: {{product.quantity}}</span>
+                    <button class="del-btn" @click="">X</button>
+                </div>
+            </div>
+        </div>
     </div>
 </header>
 <main>

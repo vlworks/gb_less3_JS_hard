@@ -5,7 +5,9 @@ const app = new Vue({
     data: {
         catalogUrl: `/catalogData.json`,
         products: [],
-        imgCatalog: `https://placehold.it/200x150`
+        imgCatalog: `https://placehold.it/200x150`,
+        carts: [],
+        imgCarts: `https://placehold.it/150x100`,
     },
     methods: {
         getJson(url){
@@ -14,9 +16,20 @@ const app = new Vue({
                 .catch(error => console.log(error))
         },
         addProduct(product){
-            console.log(product);
-            console.log(product.id_product)
-        }
+            let find = this.carts.find(el => el.id_product === product.id_product);
+            if(find){
+                find.quantity++;
+            } else {
+                let element = {
+                    id_product: product.id_product,
+                    price: product.price,
+                    product_name: product.product_name,
+                    quantity: 1
+                };
+                this.carts.push(element);
+            }
+        },
+
     },
     mounted(){
         this.getJson(`${API + this.catalogUrl}`)
