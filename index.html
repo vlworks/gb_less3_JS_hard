@@ -25,7 +25,7 @@
                 <div class="cart-desc">
                     <h3>{{product.product_name}}</h3>
                     <span>Цена: {{product.price}}</span><br><span>Количество: {{product.quantity}}</span>
-                    <button class="del-btn" @click="">X</button>
+                    <button class="del-btn" @click="delCartElement(product)">X</button>
                 </div>
             </div>
         </div>

@@ -38,6 +38,15 @@ const app = new Vue({
                 this.cartNull = false;
             }
         },
+        delCartElement(product){
+            let find = this.carts.find(el => el.id_product === product.id_product);
+            if(find.quantity > 1){
+                find.quantity--;
+            } else {
+                this.carts.splice(find, 1);
+                this.watchCartNull();
+            }
+        }
 
     },
     mounted(){
