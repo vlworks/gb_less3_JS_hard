@@ -8,6 +8,7 @@ const app = new Vue({
         imgCatalog: `https://placehold.it/200x150`,
         carts: [],
         imgCarts: `https://placehold.it/150x100`,
+        cartNull: false,
     },
     methods: {
         getJson(url){
@@ -28,6 +29,14 @@ const app = new Vue({
                 };
                 this.carts.push(element);
             }
+            this.watchCartNull();
+        },
+        watchCartNull(){
+            if(this.carts.length){
+                this.cartNull = true;
+            } else {
+                this.cartNull = false;
+            }
         },
 
     },
@@ -44,6 +53,9 @@ const app = new Vue({
                     this.products.push(el);
                 }
             })
+    },
+    computed: {
+
     }
 })
 

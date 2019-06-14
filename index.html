@@ -19,6 +19,7 @@
         </form>
         <button class="btn-cart" type="button">Корзина</button>
         <div class="cart-block _invisible">
+            <span v-show="!cartNull">Корзина пуста</span>
             <div class="cart-item" v-for="product of carts" :key="product.id_product">
                 <img :src="imgCarts" :alt="product.product_name">
                 <div class="cart-desc">
