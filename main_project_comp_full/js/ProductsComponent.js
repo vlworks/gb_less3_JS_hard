@@ -21,7 +21,7 @@ Vue.component('products', {
                     this.filtered.push(el);
                 }
             });
-        this.$parent.getJson(`getProducts.json`)
+        this.$parent.getJson(`getProducts1.json`) // создана ошибка для теста
             .then(data => {
                 for(let el of data){
                     this.products.push(el);
