@@ -5,7 +5,15 @@ const app = new Vue({
     data: {
         catalogUrl: `/catalogData.json`,
         products: [],
-        imgCatalog: `https://placehold.it/200x150`
+        imgCatalog: `https://placehold.it/200x150`,
+        carts: [],
+        imgCarts: `https://placehold.it/150x100`,
+        cartNull: false,
+        isCartVisible: false,
+        inputSearch: '',
+        filtered: [],
+        copyProducts: [],
+
     },
     methods: {
         getJson(url){
@@ -14,9 +22,49 @@ const app = new Vue({
                 .catch(error => console.log(error))
         },
         addProduct(product){
-            console.log(product);
-            console.log(product.id_product)
+            let find = this.carts.find(el => el.id_product === product.id_product);
+            if(find){
+                find.quantity++;
+            } else {
+                let element = {
+                    id_product: product.id_product,
+                    price: product.price,
+                    product_name: product.product_name,
+                    quantity: 1
+                };
+                this.carts.push(element);
+            }
+            this.watchCartNull();
+        },
+        watchCartNull(){
+            if(this.carts.length){
+                this.cartNull = true;
+            } else {
+                this.cartNull = false;
+            }
+        },
+        delCartElement(product){
+            let find = this.carts.find(el => el.id_product === product.id_product);
+            if(find.quantity > 1){
+                find.quantity--;
+            } else {
+                this.carts.splice(find, 1);
+                this.watchCartNull();
+            }
+        },
+        filter(event){
+            event.preventDefault();
+            const regexp = new RegExp(this.inputSearch, 'i');
+            if(this.inputSearch){
+                this.copyProducts = this.products.slice();
+                this.filtered = this.products.filter(el => regexp.test(el.product_name));
+                this.products = this.filtered;
+            } else {
+                this.products = this.copyProducts;
+            }
+
         }
+
     },
     mounted(){
         this.getJson(`${API + this.catalogUrl}`)
@@ -31,8 +79,11 @@ const app = new Vue({
                     this.products.push(el);
                 }
             })
-    }
-})
+    },
+    computed: {
+
+    },
+});
 
 // let getRequest = (url) => {
 //     return new Promise((resolve, reject) => {
