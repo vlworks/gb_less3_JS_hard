@@ -8,8 +8,8 @@ Vue.component('products', {
       }
     },
     methods: {
-        filter(){
-            let regexp = new RegExp(this.userSearch, 'i');
+        filter(userSearch){
+            let regexp = new RegExp(userSearch, 'i');
             this.filtered = this.products.filter(el => regexp.test(el.product_name));
         }
     },
@@ -21,7 +21,7 @@ Vue.component('products', {
                     this.filtered.push(el);
                 }
             });
-        this.$parent.getJson(`getProducts.json`)
+        this.$parent.getJson(`getProducts1.json`) // создана ошибка для теста
             .then(data => {
                 for(let el of data){
                     this.products.push(el);
